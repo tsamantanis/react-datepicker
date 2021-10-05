@@ -1,8 +1,10 @@
-# @tsamantanis/react-datepicker
+# React Datepicker react-datepicker
 
-> A simple, responsive react calendar component for selecting one or many dates in the near past or future.
+A simple, responsive react calendar component for selecting one or many dates in the near past or future.
 
-[![NPM](https://img.shields.io/npm/v/@tsamantanis/react-datepicker.svg)](https://www.npmjs.com/package/@tsamantanis/react-datepicker) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+## Example
+
+View an example of the component [here](https://tsamantanis.github.io/react-datepicker)
 
 ## Install
 
@@ -13,17 +15,30 @@ npm install --save @tsamantanis/react-datepicker
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { DatePicker } from '@tsamantanis/react-datepicker'
 
-import MyComponent from '@tsamantanis/react-datepicker'
-import '@tsamantanis/react-datepicker/dist/index.css'
+import reportWebVitals from './reportWebVitals'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <DatePicker
+      timezone="America/Los_Angeles" // Check moment-timezone documentation
+      disabled={[]} // (Optional) Array of dates to appear disabled
+      multiple={3} // (Optional) Number of dates to be selected
+      consecutive={2} // (Optional) Number of consecutive days to appear selected
+      onDayClick={(selectedDates) => console.log(selectedDates)}
+      onMonthChange={(month) => console.log(month)}
+    />
+  </React.StrictMode>,
+  document.getElementById('root')
+)
 ```
+
+## Contributions
+
+If you are interested in contributing to this project, please open an issue with a description of what you would like to add.
 
 ## License
 
