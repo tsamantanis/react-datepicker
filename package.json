@@ -1,6 +1,6 @@
 {
   "name": "@tsamantanis/react-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple, responsive react calendar component for selecting one or many dates in the near past or future.",
   "author": "tsamantanis",
   "license": "MIT",
