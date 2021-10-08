@@ -1,10 +1,13 @@
+/* eslint-disable import/no-duplicates */
 import React, { useState } from 'react'
 import _ from 'lodash'
 import moment from 'moment-timezone'
 import cn from 'classnames'
+import classNames from 'classnames'
 
 import { dayFormat } from '../../constants/datetime'
 import styles from '../../styles.module.css'
+
 const CalendarDates = ({
   timezone,
   dates,
@@ -70,11 +73,10 @@ const CalendarDates = ({
     const isSelected =
       _.includes(selectedDates, day) || _.includes(consecutiveDisabledDays, day)
     const isDisabled =
-      _.includes(disabled, date.day()) ||
+      _.includes(disabled, day) ||
       (selectedDates.length === multiple &&
         !_.includes(selectedDates, day) &&
         !_.includes(consecutiveDisabledDays, day))
-
     return (
       <span
         key={day}
@@ -82,7 +84,7 @@ const CalendarDates = ({
           [styles.dateCurrent]: isToday,
           [styles.dateSelected]: isSelected,
           [styles.dateHover]: !isDisabled && !isSelected,
-          [(styles.textMuted, styles.cursorDisabled)]: isDisabled
+          [classNames(styles.textMuted, styles.cursorDisabled)]: isDisabled
         })}
         onClick={!isDisabled ? () => handleDayClick(day) : null}
       >
