@@ -50,6 +50,7 @@ const App = () => {
           fontFamily="'VT323', monospace"
           textColor="#000000"
           backgroundColor="#F9EFE4"
+          border="1px solid #000000"
           borderRadius="0px"
           boxShadow="4px 4px #C8C2BA"
         />

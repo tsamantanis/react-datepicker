@@ -20,6 +20,7 @@ export const DatePicker = ({
   fontFamily,
   textColor,
   backgroundColor,
+  border,
   borderRadius,
   boxShadow
 }) => {
@@ -115,6 +116,7 @@ export const DatePicker = ({
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
     color: textColor || '#0B0B0B',
     backgroundColor: backgroundColor || '#fff',
+    border: border || 'none',
     borderRadius: borderRadius || '5px',
     boxShadow:
       boxShadow ||
