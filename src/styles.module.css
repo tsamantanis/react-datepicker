@@ -103,7 +103,7 @@ svg path {
   margin-bottom: -7rem;
 }
 @media screen and (min-width: 992px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.65, 0.65);
     -ms-transform: scale(0.65, 0.65);
     transform: scale(0.65, 0.65);
@@ -120,7 +120,7 @@ svg path {
     -ms-flex-pack: center;
     justify-content: center;
   }
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.75, 0.75);
     -ms-transform: scale(0.75, 0.75);
     transform: scale(0.75, 0.75);
@@ -130,35 +130,35 @@ svg path {
   }
 }
 @media screen and (max-width: 530px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform-origin: top center;
     -ms-transform-origin: top center;
     transform-origin: top center;
   }
 }
 @media screen and (max-width: 450px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.73, 0.73);
     -ms-transform: scale(0.73, 0.73);
     transform: scale(0.73, 0.73);
   }
 }
 @media screen and (max-width: 400px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.67, 0.67);
     -ms-transform: scale(0.67, 0.67);
     transform: scale(0.67, 0.67);
   }
 }
 @media screen and (max-width: 374px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.63, 0.63);
     -ms-transform: scale(0.63, 0.63);
     transform: scale(0.63, 0.63);
   }
 }
 @media screen and (max-width: 350px) {
-  .online-bookings .calendar {
+  .calendar {
     -webkit-transform: scale(0.58, 0.58);
     -ms-transform: scale(0.58, 0.58);
     transform: scale(0.58, 0.58);
