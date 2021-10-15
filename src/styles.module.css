@@ -102,16 +102,7 @@ svg path {
 .datePickerContainer {
   margin-bottom: -7rem;
 }
-@media screen and (min-width: 992px) {
-  .calendar {
-    -webkit-transform: scale(0.65, 0.65);
-    -ms-transform: scale(0.65, 0.65);
-    transform: scale(0.65, 0.65);
-    -webkit-transform-origin: top left;
-    -ms-transform-origin: top left;
-    transform-origin: top left;
-  }
-}
+
 @media screen and (max-width: 991px) {
   .datePickerContainer {
     display: -ms-grid;
