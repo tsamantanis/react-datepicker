@@ -1,5 +1,5 @@
 /* eslint-disable import/no-duplicates */
-import React, { useState } from 'react'
+import { useState } from 'react'
 import _ from 'lodash'
 import moment from 'moment-timezone'
 import cn from 'classnames'
@@ -14,7 +14,8 @@ const CalendarDates = ({
   disabled,
   multiple,
   consecutive,
-  onDayClick
+  onDayClick,
+  calendarStyles
 }) => {
   const [selectedDates, setSelectedDates] = useState([])
 
@@ -45,12 +46,20 @@ const CalendarDates = ({
 
   const firstDayOfWeek = dates[0].format('d')
   const emptyStartDays = _.range(firstDayOfWeek, 0, -1).map((i) => (
-    <span className={styles.dateValue} key={`emptyStart-${i}`} />
+    <span
+      className={styles.dateValue}
+      key={`emptyStart-${i}`}
+      style={calendarStyles.date}
+    />
   ))
 
   const lastDayOfWeek = dates[dates.length - 1].format('d')
   const emptyEndDays = _.range(lastDayOfWeek, 6).map((i) => (
-    <span className={styles.dateValue} key={`emptyEnd-${i}`} />
+    <span
+      className={styles.dateValue}
+      key={`emptyEnd-${i}`}
+      style={calendarStyles.date}
+    />
   ))
 
   const calendarOutput = dates.map((date) => {
@@ -87,6 +96,15 @@ const CalendarDates = ({
           [classNames(styles.textMuted, styles.cursorDisabled)]: isDisabled
         })}
         onClick={!isDisabled ? () => handleDayClick(day) : null}
+        style={
+          isDisabled
+            ? calendarStyles.disabled
+            : isSelected
+            ? calendarStyles.selected
+            : isToday
+            ? calendarStyles.current
+            : {}
+        }
       >
         {date.format('D')}
       </span>

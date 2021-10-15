@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import moment from 'moment'
 
-import CalendarDates from './components/CalendarDates'
+// import CalendarDates from './components/CalendarDates'
 import styles from './styles.module.css'
 import classNames from 'classnames'
 
@@ -12,7 +12,12 @@ export const DatePicker = ({
   multiple,
   consecutive,
   onDayClick,
-  onMonthChange
+  onMonthChange,
+  fontFamily,
+  textColor,
+  backgroundColor,
+  borderRadius,
+  boxShadow
 }) => {
   const [enabledMonths] = useState(
     months || [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -72,8 +77,57 @@ export const DatePicker = ({
 
   // const isAfterNow = month.isAfter(moment().tz(timezone).startOf('month'))
 
+  function hexToRGB(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16)
+    const g = parseInt(hex.slice(3, 5), 16)
+    const b = parseInt(hex.slice(5, 7), 16)
+
+    if (alpha) {
+      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')'
+    } else {
+      return 'rgb(' + r + ', ' + g + ', ' + b + ')'
+    }
+  }
+
+  const calendarStyles = {
+    fontFamily:
+      fontFamily ||
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    color: textColor || '#0B0B0B',
+    backgroundColor: backgroundColor || '#fff',
+    borderRadius: borderRadius || '5px',
+    boxShadow:
+      boxShadow ||
+      '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+    date: {
+      // border: `1px solid ${textColor}`,
+      '&:hover': {
+        background: textColor || 'transparent'
+      }
+    },
+    current: {
+      border: `1px solid ${textColor || '#0B0B0B'}`,
+      color: textColor || '#0B0B0B',
+      // background: textColor || '#0B0B0B',
+      '&:hover': {
+        background: hexToRGB(textColor || '#0B0B0B', 0.4)
+      }
+    },
+    selected: {
+      color: backgroundColor || '#fff',
+      background: hexToRGB(textColor || '#0B0B0B', 1)
+    },
+    disabled: {
+      color: hexToRGB(textColor || '#0B0B0B', 0.4),
+      background: hexToRGB(backgroundColor || '#ffffff', 1)
+    }
+  }
+  console.log(calendarStyles)
   return (
-    <div className={classNames(styles.calendar, styles.custom)}>
+    <div
+      className={classNames(styles.calendar, styles.custom)}
+      style={calendarStyles}
+    >
       <div className={styles.content}>
         <svg
           className={classNames(
@@ -88,7 +142,7 @@ export const DatePicker = ({
         >
           <path
             d='M1 15.1421L15.1421 1.00001M1.04761 15.1898L15.4957 29.6379'
-            stroke='black'
+            stroke={textColor || '#0B0B0B'}
             strokeLinecap='round'
             strokeLinejoin='round'
           />
@@ -109,7 +163,7 @@ export const DatePicker = ({
         >
           <path
             d='M15.4957 1L29.9914 15.4957M15.4957 29.9914L29.9576 15.5294'
-            stroke='black'
+            stroke={textColor || '#0B0B0B'}
             strokeLinecap='round'
             strokeLinejoin='round'
           />
@@ -131,6 +185,7 @@ export const DatePicker = ({
         multiple={multiple}
         consecutive={consecutive}
         onDayClick={onDayClick}
+        calendarStyles={calendarStyles}
       />
     </div>
   )
