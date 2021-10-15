@@ -1,9 +1,11 @@
+/* eslint-disable import/no-duplicates */
 import React, { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 
 import CalendarDates from './components/CalendarDates'
 import styles from './styles.module.css'
 import classNames from 'classnames'
+import cn from 'classnames'
 
 export const DatePicker = ({
   months,
@@ -11,8 +13,10 @@ export const DatePicker = ({
   disabled,
   multiple,
   consecutive,
+  changeYear = false,
   onDayClick,
   onMonthChange,
+  onYearChange = () => {},
   fontFamily,
   textColor,
   backgroundColor,
@@ -41,11 +45,11 @@ export const DatePicker = ({
     loadCalendar(start)
   }, [])
 
-  const loadCalendar = (month) => {
+  const loadCalendar = (date) => {
     const dates = []
 
-    const dateIterator = moment.tz(month, timezone).startOf('month')
-    const monthEnd = moment.tz(month, timezone).endOf('month')
+    const dateIterator = moment.tz(date, timezone).startOf('month')
+    const monthEnd = moment.tz(date, timezone).endOf('month')
 
     while (dateIterator.isSameOrBefore(monthEnd)) {
       dates.push(moment.tz(dateIterator, timezone).startOf('day'))
@@ -53,9 +57,10 @@ export const DatePicker = ({
       dateIterator.add(1, 'day')
     }
 
-    setMonth(month)
+    setMonth(date)
     setCalendarDates(dates)
-    onMonthChange(month.month())
+    onMonthChange(date.month())
+    onYearChange(date.year())
   }
 
   const loadPreviousMonth = () => {
@@ -67,10 +72,25 @@ export const DatePicker = ({
     loadCalendar(newMonth)
   }
 
+  const loadPreviousYear = () => {
+    const newYear = moment
+      .tz(month, timezone)
+      .subtract(1, 'year')
+      .startOf('month')
+
+    loadCalendar(newYear)
+  }
+
   const loadNextMonth = () => {
     const newMonth = moment.tz(month, timezone).add(1, 'month').startOf('month')
 
     loadCalendar(newMonth)
+  }
+
+  const loadNextYear = () => {
+    const newYear = moment.tz(month, timezone).add(1, 'year').startOf('month')
+
+    loadCalendar(newYear)
   }
 
   if (!month) return null
@@ -122,19 +142,39 @@ export const DatePicker = ({
       background: hexToRGB(backgroundColor || '#ffffff', 1)
     }
   }
-  console.log(calendarStyles)
+
   return (
     <div
       className={classNames(styles.calendar, styles.custom)}
       style={calendarStyles}
     >
       <div className={styles.content}>
+        {changeYear && (
+          <svg
+            className={classNames(
+              styles.date,
+              styles.floatLeft,
+              styles.cursorPointer,
+              styles.ml1
+            )}
+            onClick={loadPreviousYear}
+            viewBox='0 0 17 16'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M1 8.07106L8.07106 1M1.02381 8.09487L8.24784 15.3189M8.31885 8.07106L15.3899 1M8.34265 8.09487L15.5667 15.3189'
+              stroke={textColor || '#0B0B0B'}
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        )}
         <svg
-          className={classNames(
-            styles.floatLeft,
-            styles.cursorPointer,
-            styles.ml4
-          )}
+          className={cn(styles.floatLeft, styles.cursorPointer, {
+            [styles.ml2]: changeYear,
+            [styles.ml1]: !changeYear
+          })}
           onClick={loadPreviousMonth}
           viewBox='0 0 31 31'
           fill='none'
@@ -150,12 +190,32 @@ export const DatePicker = ({
 
         {month.format('MMMM YYYY')}
 
+        {changeYear && (
+          <svg
+            className={classNames(
+              styles.date,
+              styles.floatRight,
+              styles.cursorPointer,
+              styles.mr1
+            )}
+            onClick={loadNextYear}
+            viewBox='0 0 17 16'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M1.49561 1L8.74345 8.24784M1.49561 15.4957L8.72658 8.26471M8.99115 1L16.239 8.24784M8.99115 15.4957L16.2221 8.26471'
+              stroke={textColor || '#0B0B0B'}
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        )}
         <svg
-          className={classNames(
-            styles.floatRight,
-            styles.cursorPointer,
-            styles.mr4
-          )}
+          className={cn(styles.floatRight, styles.cursorPointer, {
+            [styles.mr2]: changeYear,
+            [styles.mr1]: !changeYear
+          })}
           onClick={loadNextMonth}
           viewBox='0 0 31 31'
           fill='none'

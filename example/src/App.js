@@ -14,7 +14,13 @@ const App = () => {
         onDayClick={(selectedDates) => console.log(selectedDates)}
         onMonthChange={(month) => console.log(month)}
       />
-      <br />
+      <DatePicker
+        timezone="America/Los_Angeles" // Check moment-timezone documentation
+        changeYear={true} // Boolean for allowing users to change calendar years
+        onDayClick={(selectedDates) => console.log(selectedDates)}
+        onMonthChange={(month) => console.log(month)}
+        onYearChange={(year) => console.log(year)}
+      />
       <DatePicker
         timezone="America/Los_Angeles" // Check moment-timezone documentation
         disabled={["2021-10-09", "2021-10-10", "2021-10-19"]} // (Optional) Array of YYYY-MM-DD formatted dates to appear disabled

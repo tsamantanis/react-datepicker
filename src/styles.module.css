@@ -75,10 +75,22 @@
 .floatLeft {
   float: left;
 }
-.mr4 {
+.mr1 {
+  margin-right: 1.2rem;
+}
+.ml1 {
+  margin-left: 1.2rem;
+}
+.mr2 {
+  margin-right: 2rem;
+}
+.ml2 {
+  margin-left: 2rem;
+}
+.mr3 {
   margin-right: 3rem;
 }
-.ml4 {
+.ml3 {
   margin-left: 3rem;
 }
 .cursorPointer {

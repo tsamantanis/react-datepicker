@@ -38,6 +38,29 @@ const App = () => {
 export default App
 ```
 
+### Changing Year
+
+```jsx
+import React from 'react'
+
+import { DatePicker } from '@tsamantanis/react-datepicker'
+import '@tsamantanis/react-datepicker/dist/index.css'
+
+const App = () => {
+  return (
+    <DatePicker
+      timezone='America/Los_Angeles' // Check moment-timezone documentation
+      changeYear={true} // Boolean for allowing users to change calendar years
+      onDayClick={(selectedDates) => console.log(selectedDates)}
+      onMonthChange={(month) => console.log(month)}
+      onYearChange={(year) => console.log(year)}
+    />
+  )
+}
+
+export default App
+```
+
 ### Custom Styles
 
 ```jsx
