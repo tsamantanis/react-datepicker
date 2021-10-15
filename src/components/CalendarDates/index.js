@@ -23,6 +23,17 @@ const CalendarDates = ({
   consecutive = consecutive || 1
   multiple = multiple || 1
 
+  if (consecutive > 1) {
+    const arr = []
+    for (let i = 0; i < disabled.length; i += 1) {
+      arr.push(disabled[i])
+      for (let j = 1; j < consecutive; j += 1) {
+        arr.push(moment(disabled[i]).subtract(j, 'day').format(dayFormat))
+      }
+    }
+    disabled = arr
+  }
+  console.log(disabled)
   const handleDayClick = (day) => {
     let updatedDates
 
