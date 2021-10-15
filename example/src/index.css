@@ -1,10 +1,33 @@
 body {
   margin: 0;
-  padding: 2rem;
+  /* padding: 2rem; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 100%;
+}
+
+body .calendarContainer {
+  padding: 4rem;
+  min-width: 100vw;
+  /* min-height: 90vh; */
+}
+
+body .calendarContainer .calendar {
+  margin: auto;
+}
+
+.calendarContainer.default {
+  background: #14aeff;
+}
+
+.calendarContainer.year {
+  background: #9114ff;
+}
+
+.calendarContainer.retro {
+  background: #f9efe4;
 }
